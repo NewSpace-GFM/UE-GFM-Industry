@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Carte des entreprises européennes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 100vh; width: 100vw; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Tableau combiné des entreprises européennes
+        const companies = [
+            // Belgique
+            {
+                name: "Starion Group (SAFEPLACE)",
+                activity: "Service that will provide prompt, up-to-date situational awareness information to crisis and disaster management organisations in Europe",
+                city: "Wavre",
+                country: "Belgium",
+                lat: 50.7139,
+                lon: 4.6136,
+                web: "https://www.stariongroup.eu/starion-leads-development-of-safeplace-crisis-response-platform/",
+                linkedin: "https://www.linkedin.com/company/stariongroup/about/"
+            },
+            // France
+            {
+                name: "BRLI (WIMES)",
+                activity: "Biodiversity Management and Sustainable Development, Water and Risks, Water Resources Management...",
+                city: "Nîmes",
+                country: "France",
+                lat: 43.8367,
+                lon: 4.3601,
+                web: "https://brli.brl.fr/fr/wimes",
+                linkedin: "https://www.linkedin.com/company/brl-ing-nierie/about/"
+            },
+            {
+                name: "CS Group (FloodCare)",
+                activity: "Software, Space applications, GEOINT, IMINT, Image Processing, Earth Observation...",
+                city: "Toulouse",
+                country: "France",
+                lat: 43.5847,
+                lon: 1.4442,
+                web: "https://floodcare.eu/",
+                linkedin: "https://www.linkedin.com/showcase/csgroup-space/about/"
+            },
+            {
+                name: "EXAMO",
+                activity: "Specialized in expertise and project management assistance of flood risks",
+                city: "Paris",
+                country: "France",
+                lat: 48.8466,
+                lon: 2.3522,
+                web: "https://examo.fr/nos-activites/pca/",
+                linkedin: "https://www.linkedin.com/company/examo/about/"
+            },
+            {
+                name: "GEO4i (Géospace)",
+                activity: "Imagery Intelligence, Geospatial Intelligence, Data Collection and Management, Imagery Provider, Imagery, GEOINT et IMINT",
+                city: "Creil",
+                country: "France",
+                lat: 49.2310,
+                lon: 2.4846,
+                web: "http://geo4i.com/",
+                linkedin: "https://www.linkedin.com/company/geo4i/about/"
+            },
+            {
+                name: "HD Rain",
+                activity: "FlashFlood, Forecast, Weather, DeepLearning et MaaS",
+                city: "BONNEUIL-SUR-MARNE",
+                country: "France",
+                lat: 48.7704,
+                lon: 2.4807,
+                web: "https://www.hd-rain.com/",
+                linkedin: "https://www.linkedin.com/company/hdrain/about/"
+            },
+            {
+                name: "Kinéis",
+                activity: "Spatial IoT connectivity/Continuous and reliable data collection/Sending alerts/Fast reaction to limit damage",
+                city: "RAMONVILLE-SAINT-AGNE",
+                country: "France",
+                lat: 43.5412,
+                lon: 1.4783,
+                web: "https://www.kineis.com/",
+                linkedin: "https://www.linkedin.com/company/kineis-argos/about/"
+            },
+            {
+                name: "Magellium (SEED-FD)",
+                activity: "Earth Observation, GIS, Mapping, Geo Intelligence...",
+                city: "RAMONVILLE-SAINT-AGNE",
+                country: "France",
+                lat: 43.5312,
+                lon: 1.4783,
+                web: "https://www.magellium.com/projet/seed-fd/",
+                linkedin: "https://www.linkedin.com/company/magellium/about/"
+            },
+            {
+                name: "MidGard (SitGard)",
+                activity: "MidGard aims to digitalize emergency services and crisis management through simplified access to and interpretation of data. The platform automatically stores, visualizes and analyzes territorial data and aerial imagery.",
+                city: "Ajaccio",
+                country: "France",
+                lat: 41.9192,
+                lon: 8.7386,
+                web: "https://www.midgard-ai.com/",
+                linkedin: "https://www.linkedin.com/company/midgard-ai/about/"
+            },
+            {
+                name: "NUMERISK",
+                activity: "Crisis management, Major hazard awareness, Innovation and Plan Communal de Sauvegarde",
+                city: "La Rochelle",
+                country: "France",
+                lat: 46.1603,
+                lon: -1.1511,
+                web: "https://www.numerisk.fr/home",
+                linkedin: "https://www.linkedin.com/company/numerisk/about/"
+            },
+            {
+                name: "OgoXe",
+                activity: "Flood Alert, Geohazards, Environmental Consulting, Numerical modeling, IoT, flood warning system, sensors et smart devices",
+                city: "Toulouse",
+                country: "France",
+                lat: 43.5747,
+                lon: 1.4442,
+                web: "https://www.ogoxe.com/",
+                linkedin: "https://www.linkedin.com/company/ogoxe/about/"
+            },
+            {
+                name: "Prométhéé",
+                activity: "Spatial, Newspace, IoT, satellites, Earth Intelligence et Space Sovereignty",
+                city: "Aix-en-Provence",
+                country: "France",
+                lat: 43.5297,
+                lon: 5.4474,
+                web: "https://promethee.earth/catastrophes-naturelles/",
+                linkedin: "https://www.linkedin.com/company/promethee-earthintelligence/about/"
+            },
+            {
+                name: "TENEVIA",
+                activity: "Video hydrometry (height, velocity, flow measurement), Hydrological modeling, Decision support solutions, Environmental monitoring, Flood forecasting, Flow simulation, Flood warning and Sensors",
+                city: "Meylan",
+                country: "France",
+                lat: 45.2096,
+                lon: 5.7904,
+                web: "https://www.tenevia.com/fr/",
+                linkedin: "https://www.linkedin.com/company/tenevia/about/"
+            },
+            {
+                name: "Thales Alenia Space (Flooding Digital Twin)",
+                activity: "Space technologies for Telecommunications, Earth Observation, Navigation, Exploration & Orbital Infrastructures",
+                city: "Cannes",
+                country: "France",
+                lat: 43.5528,
+                lon: 7.0174,
+                web: "https://www.thalesaleniaspace.com/en",
+                linkedin: "https://www.linkedin.com/company/thales-alenia-space/about/"
+            },
+            {
+                name: "VorteX-io",
+                activity: "Hydrology, flood prevention, innovation, water management and river monitoring",
+                city: "Toulouse",
+                country: "France",
+                lat: 43.5547,
+                lon: 1.4442,
+                web: "https://www.vortex-io.fr/",
+                linkedin: "https://www.linkedin.com/company/vortex-io/about/"
+            },
+            {
+                name: "Celest.Science",
+                activity: "AI, Climat science (hydrology)",
+                city: "Paris",
+                country: "France",
+                lat: 48.8566,
+                lon: 2.3522,
+                web: "https://www.celest.science/use-case",
+                linkedin: "https://www.linkedin.com/company/celestscience/about/"
+            },
+            {
+                name: "Blue Water Intelligence",
+                activity: "Hydrological forecasting on top of near real-time continental freshwater monitoring",
+                city: "Toulouse",
+                country: "France",
+                lat: 43.6147,
+                lon: 1.4442,
+                web: "https://bwi.earth/",
+                linkedin: "https://www.linkedin.com/company/blue-waterintelligence/about/"
+            },
+            {
+                name: "HETWA (MEWISO Zoom)",
+                activity: "Precise risk analysis/Customized recommendations/Adaptation and prevention/Enhanced CSR approach",
+                city: "Toulouse",
+                country: "France",
+                lat: 43.6247,
+                lon: 1.4442,
+                web: "https://hetwa.org/mewiso-zoom/",
+                linkedin: "https://www.linkedin.com/company/hetwa/about/"
+            },
+            // Italie
+            {
+                name: "SaferPlaces",
+                activity: "AI-based Digital Twin Solution for Flood Risk Intelligence in Urban Areas",
+                city: "Rimini",
+                country: "Italy",
+                lat: 44.0678,
+                lon: 12.5695,
+                web: "https://saferplaces.co/#our-technology",
+                linkedin: "https://www.linkedin.com/company/saferplacesplatform/about/"
+            },
+            {
+                name: "Griddit (Rebit Solution)",
+                activity: "Earth Observation and Geospatial intelligence service – the REBIT solution – to tackle water, environmental and societal challenges with major focus on flood risk.",
+                city: "Roma",
+                country: "Italy",
+                lat: 41.9028,
+                lon: 12.4964,
+                web: "https://griddit.space/the-rebit-solution/",
+                linkedin: "https://www.linkedin.com/company/griddit/about/"
+            },
+            {
+                name: "Latitudo 40",
+                activity: "Earth observation, AI, geoinformation, urban analytics, infrastructure monitoring...",
+                city: "Napoli",
+                country: "Italy",
+                lat: 40.8518,
+                lon: 14.2681,
+                web: "https://www.latitudo40.com/climate-resilience-in-cities",
+                linkedin: "https://www.linkedin.com/company/latitudo-40/about/"
+            },
+            // Portugal
+            {
+                name: "GEOTERRA360 (Watersphere260)",
+                activity: "Monitoring high rainfall events for flood prediction/Demarcation of flooding servitudes due to frequent inundation/Supporting hydro power and flood release decisions",
+                city: "Evora",
+                country: "Portugal",
+                lat: 38.5711,
+                lon: -7.9135,
+                web: "https://www.watersphere360.com/",
+                linkedin: "https://www.linkedin.com/company/geoterra360/about/"
+            },
+            {
+                name: "GreenMetrics AI",
+                activity: "Ultra-Early Flood Detection/Real-time Monitoring/Alerts in under 10 seconds",
+                city: "Lisbon",
+                country: "Portugal",
+                lat: 38.7223,
+                lon: -9.1393,
+                web: "https://www.greenmetrics.ai/fr/city",
+                linkedin: "https://www.linkedin.com/company/greenmetrics-ai/about/"
+            },
+            // Espagne
+            {
+                name: "ARANTEC (SMARTY River)",
+                activity: "Autonomous Meteorological Stations, Telecontrol and on-line monitoring of sensors, Flood monitoring, IoT, smart cities, environmental variables, WSN and wireless technology...",
+                city: "Lleida",
+                country: "Spain",
+                lat: 41.6176,
+                lon: 0.6200,
+                web: "https://www.arantec.com/fr/smarty-river/",
+                linkedin: "https://www.linkedin.com/company/arantec-engineering/about/"
+            },
+            {
+                name: "GMV (Eoclima)",
+                activity: "Impact of riverine flood events, ecosystem impact studies, calculates current river flood risk estimates for different return periods, and assesses river flood risk using future projections and RCP scenarios",
+                city: "Madrid",
+                country: "Spain",
+                lat: 40.4168,
+                lon: -3.7038,
+                web: "https://www.gmv.com/en/products/space/eoclima",
+                linkedin: "https://www.linkedin.com/company/gmv/about/"
+            },
+            {
+                name: "IntelliAlert (Tecnalia)",
+                activity: "Meteorological monitoring and forecasting: high-resolution monitoring and forecasting tools and technologies at local and regional level, for emergencies and communication.",
+                city: "Derio",
+                country: "Spain",
+                lat: 43.3000,
+                lon: -2.8833,
+                web: "https://fastflooding.com/intellialert/",
+                linkedin: "https://www.linkedin.com/company/intellialert/about/"
+            },
+            {
+                name: "Lobelia Earth",
+                activity: "Earth Observation data and climate projections for the assessment of vulnerabilities, risks and opportunities associated to climate scenarios for each particular case and region of interest. We work on monitoring, forecasting and planning, often from open and free data",
+                city: "Barcelona",
+                country: "Spain",
+                lat: 41.3851,
+                lon: 2.1734,
+                web: "https://www.lobelia.earth/",
+                linkedin: "https://www.linkedin.com/company/lobelia-earth/about/"
+            },
+            {
+                name: "Mitiga Solutions (EarthScan)",
+                activity: "Climate Intelligence, Climate Risk, Machine Learning, Artificial Intelligence, Weather Risks, Risk Simulations, Climate Adaptation...",
+                city: "Barcelona",
+                country: "Spain",
+                lat: 41.3651,
+                lon: 2.1734,
+                web: "https://www.earth-scan.com/#platform",
+                linkedin: "https://www.linkedin.com/company/earthscantm/about/"
+            },
+            {
+                name: "Pulses",
+                activity: "Risk evaluation/Impact assesment/Opportunitiues discovery/Sustainability compliance/Asset management",
+                city: "Barcelona",
+                country: "Spain",
+                lat: 41.4051,
+                lon: 2.1734,
+                web: "https://earthpulse.ai/",
+                linkedin: "https://www.linkedin.com/company/earthpulse-sl/about/"
+            },
+            {
+                name: "Worldsensing",
+                activity: "Industrial Internet, Business Process, Machine-to-Machine (M2M), Wireless Sensor Networks, Cloud Computing and Processing, Wireless Instrumentation and Dataloggers et Wireless Seismic Acquisition",
+                city: "Barcelona",
+                country: "Spain",
+                lat: 41.3451,
+                lon: 2.1734,
+                web: "https://www.worldsensing.com/",
+                linkedin: "https://www.linkedin.com/company/worldsensing/about/"
+            },
+             {
+                name: "SATLANTIS",
+                activity: "Fast and draft damage map during Natural Disaster enables fast crisis response",
+                city: "Leioa",
+                country: "Spain",
+                lat: 43.3100,
+                lon: -2.9500,
+                web: "https://www.satlantis.com/aplications/other-applications/",
+                linkedin: "https://www.linkedin.com/company/satlantis/about/"
+            }
+        ];
+
+        // Initialisation de la carte centrée sur l'Europe
+        const map = L.map('map').setView([48.5, 8], 5);
+
+        // Fond de carte OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Ajout des marqueurs
+        companies.forEach(company => {
+            if (company.lat && company.lon) {
+                L.marker([company.lat, company.lon])
+                    .addTo(map)
+                    .bindPopup(
+                        `<strong>${company.name}</strong><br>
+                        <em>${company.city}, ${company.country}</em><br>
+                        <small>${company.activity}</small><br>
+                        ${company.web ? `<a href="${company.web}" target="_blank">Site web</a> | ` : ''}
+                        ${company.linkedin ? `<a href="${company.linkedin}" target="_blank">LinkedIn</a>` : ''}`
+                    );
+            }
+        });
+    </script>
+</body>
+</html>
