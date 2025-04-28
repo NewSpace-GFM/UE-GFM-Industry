@@ -18,7 +18,7 @@
         }
         #filter-box {
             position: absolute;
-            top: 490px;
+            top: 200px;
             left: 20px;
             background: white;
             border-radius: 12px;
@@ -606,7 +606,7 @@
         const map = L.map('map').setView([48.5, 8], 5);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
+            attribution: '© OpenStreetMap contributors | CS Group'
         }).addTo(map);
 
         let markersLayer = L.layerGroup().addTo(map);
