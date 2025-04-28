@@ -1,82 +1,108 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <title>Carte des entreprises européennes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-        #filter-box {
-            position: absolute;
-            top: 200px;
-            left: 20px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            padding: 15px;
-            width: 280px;
-            max-height: 80vh;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-        #filter-box h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 18px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-        }
-        .filter-group {
-            margin-bottom: 15px;
-        }
-        .filter-group label {
-            display: block;
-            margin: 5px 0;
-            font-size: 14px;
-            color: #333;
-        }
-        .filter-group input[type="checkbox"] {
-            margin-right: 6px;
-        }
-        #filter-box::-webkit-scrollbar {
-            width: 6px;
-        }
-        #filter-box::-webkit-scrollbar-thumb {
-            background-color: #ccc;
-            border-radius: 3px;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>Carte des entreprises européennes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    #map {
+      height: 100%;
+      width: 100%;
+    }
+    #filter-box {
+      position: absolute;
+      top: 200px;
+      left: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 15px;
+      width: 300px;
+      z-index: 1000;
+    }
+    #filter-box h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 18px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    .filter-group {
+      margin-bottom: 15px;
+    }
+    .filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 5px 0;
+      user-select: none;
+    }
+    .filter-arrow {
+      transition: transform 0.3s ease;
+      font-size: 16px;
+    }
+    .filter-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .filter-content.open {
+      max-height: 500px; /* suffisamment grand pour contenir les options */
+      transition: max-height 0.4s ease;
+    }
+    .filter-content label {
+      display: block;
+      margin: 5px 0;
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
-    <div id="map"></div>
 
-    <div id="filter-box">
-        <h3>Filters</h3>
+<div id="map"></div>
 
-        <div class="filter-group" id="theme-filters">
-            <strong>Topic</strong>
-            <!-- Cases à cocher Thèmes -->
-        </div>
+<!-- Boîte de filtres -->
+<div id="filter-box">
+  <h3>Filtres</h3>
 
-        
-	<div class="filter-group" id="country-filters">
-            <strong>Country</strong>
-            <!-- Cases à cocher Pays -->
-        </div>
+  <div class="filter-group">
+    <div class="filter-header" onclick="toggleFilter('theme-content', 'theme-arrow')">
+      <strong>Topics</strong>
+      <span id="theme-arrow" class="filter-arrow">◀</span>
     </div>
+    <div id="theme-content" class="filter-content">
+      <!-- Cases à cocher Thèmes -->
+    </div>
+  </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
+  <div class="filter-group">
+    <div class="filter-header" onclick="toggleFilter('country-content', 'country-arrow')">
+      <strong>Countries</strong>
+      <span id="country-arrow" class="filter-arrow">◀</span>
+    </div>
+    <div id="country-content" class="filter-content">
+      <!-- Cases à cocher Pays -->
+    </div>
+  </div>
+
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
         // Tableau combiné des entreprises européennes
         const companies = [
             // Belgique
@@ -603,63 +629,79 @@
             "SSA",
         ];
 
-        const map = L.map('map').setView([48.5, 8], 5);
+        // Carte
+const map = L.map('map').setView([48.5, 8], 5);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors | CS Group'
-        }).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors|CS Group'
+}).addTo(map);
 
-        let markersLayer = L.layerGroup().addTo(map);
+let markersLayer = L.layerGroup().addTo(map);
 
-        function updateMarkers(selectedCountries, selectedThemes) {
-            markersLayer.clearLayers();
-            companies.forEach(company => {
-                const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(company.country);
-                const matchesTheme = selectedThemes.length === 0 || selectedThemes.some(theme => (company.theme || []).includes(theme));
+// Fonction de mise à jour des marqueurs
+function updateMarkers(selectedThemes, selectedCountries) {
+  markersLayer.clearLayers();
+  companies.forEach(company => {
+    const matchesTheme = selectedThemes.length === 0 || selectedThemes.some(theme => (company.theme || []).includes(theme));
+    const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(company.country);
 
-                if (company.lat && company.lon && matchesCountry && matchesTheme) {
-                    L.marker([company.lat, company.lon])
-                        .addTo(markersLayer)
-                        .bindPopup(
-                            `<strong>${company.name}</strong><br>
-                            <em>${company.city}, ${company.country}</em><br>
-                            <small>${company.activity}</small><br>
-                            ${company.web ? `<a href="${company.web}" target="_blank">Site web</a> | ` : ''}
-                            ${company.linkedin ? `<a href="${company.linkedin}" target="_blank">LinkedIn</a>` : ''}`
-                        );
-                }
-            });
-        }
+    if (company.lat && company.lon && matchesTheme && matchesCountry) {
+      L.marker([company.lat, company.lon])
+        .addTo(markersLayer)
+        .bindPopup(
+          `<strong>${company.name}</strong><br>
+          <em>${company.city}, ${company.country}</em><br>
+          <small>${company.activity}</small><br>
+          ${company.web ? `<a href="${company.web}" target="_blank">Site web</a> | ` : ''}
+          ${company.linkedin ? `<a href="${company.linkedin}" target="_blank">LinkedIn</a>` : ''}`
+        );
+    }
+  });
+}
 
-        // Création des filtres dynamiques
-        const countries = [...new Set(companies.map(c => c.country))].sort();
-        const countryFiltersDiv = document.getElementById('country-filters');
+// Génère les cases à cocher
+function createCheckboxes(containerId, items) {
+  const container = document.getElementById(containerId);
+  items.forEach(item => {
+    const label = document.createElement('label');
+    label.innerHTML = `<input type="checkbox" value="${item}" checked> ${item}`;
+    container.appendChild(label);
+  });
+}
 
-        countries.forEach(country => {
-            const label = document.createElement('label');
-            label.innerHTML = `<input type="checkbox" value="${country}" checked> ${country}`;
-            countryFiltersDiv.appendChild(label);
-        });
+createCheckboxes('theme-content', themes);
 
-        const themeFiltersDiv = document.getElementById('theme-filters');
+const countries = [...new Set(companies.map(c => c.country))].sort();
+createCheckboxes('country-content', countries);
 
-        themes.forEach(theme => {
-            const label = document.createElement('label');
-            label.innerHTML = `<input type="checkbox" value="${theme}" checked> ${theme}`;
-            themeFiltersDiv.appendChild(label);
-        });
+// Gère les filtres sélectionnés
+function getSelectedValues(containerId) {
+  return Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(input => input.value);
+}
 
-        function getSelectedValues(containerId) {
-            return Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(input => input.value);
-        }
+document.getElementById('filter-box').addEventListener('change', () => {
+  const selectedThemes = getSelectedValues('theme-content');
+  const selectedCountries = getSelectedValues('country-content');
+  updateMarkers(selectedThemes, selectedCountries);
+});
 
-        document.getElementById('filter-box').addEventListener('change', () => {
-            const selectedCountries = getSelectedValues('country-filters');
-            const selectedThemes = getSelectedValues('theme-filters');
-            updateMarkers(selectedCountries, selectedThemes);
-        });
+// Gestion des menus dépliants + rotation flèche
+function toggleFilter(contentId, arrowId) {
+  const content = document.getElementById(contentId);
+  const arrow = document.getElementById(arrowId);
 
-        updateMarkers(countries, themes);
-    </script>
+  if (content.classList.contains('open')) {
+    content.classList.remove('open');
+    arrow.textContent = '◀';
+  } else {
+    content.classList.add('open');
+    arrow.textContent = '▼';
+  }
+}
+
+// Affiche tous les marqueurs au départ
+updateMarkers(themes, countries);
+</script>
+
 </body>
 </html>
