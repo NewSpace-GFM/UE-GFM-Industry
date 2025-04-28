@@ -6,11 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        #map { height: 100vh; width: 100vw; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        #filter-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            padding: 15px;
+            width: 280px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        #filter-box h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        .filter-group label {
+            display: block;
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+        }
+        .filter-group input[type="checkbox"] {
+            margin-right: 6px;
+        }
+        #filter-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        #filter-box::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
     <div id="map"></div>
+
+    <div id="filter-box">
+        <h3>Filtres</h3>
+
+        <div class="filter-group" id="theme-filters">
+            <strong>Topic</strong>
+            <!-- Cases à cocher Thèmes -->
+        </div>
+
+        
+	<div class="filter-group" id="country-filters">
+            <strong>Country</strong>
+            <!-- Cases à cocher Pays -->
+        </div>
+    </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // Tableau combiné des entreprises européennes
@@ -24,7 +88,8 @@
                 lat: 50.7139,
                 lon: 4.6136,
                 web: "https://www.stariongroup.eu/starion-leads-development-of-safeplace-crisis-response-platform/",
-                linkedin: "https://www.linkedin.com/company/stariongroup/about/"
+                linkedin: "https://www.linkedin.com/company/stariongroup/about/",
+		theme: "Flood Management"
             },
 	   {
                 name: "IMDC",
@@ -34,7 +99,8 @@
                 lat: 51.219448,
                 lon: 4.402464,
                 web: "https://imdc.be/en/reference/fews-floodforecast",
-                linkedin: "https://www.linkedin.com/company/imdc/"
+                linkedin: "https://www.linkedin.com/company/imdc/",
+		theme: "Flood Management"
             },
   	 {
                 name: "HAEDES (Mira X)",
@@ -44,7 +110,8 @@
                 lat: 51.053822,
                 lon: 3.722270,
                 web: "https://haedes.eu/climate-resilience-sustainable-water-systems/",
-                linkedin: "https://www.linkedin.com/company/haedes-bv/about/"
+                linkedin: "https://www.linkedin.com/company/haedes-bv/about/",
+		theme: "Flood Management"
             },
 	    // Pays-Bas
             {
@@ -55,7 +122,8 @@
                 lat: 52.156113,
                 lon: 5.387827,
                 web: "https://cdr-international.nl/disciplines/flood-risk-and-urban-water-management/",
-                linkedin: "https://www.linkedin.com/company/cdr-international-b-v-/about/"
+                linkedin: "https://www.linkedin.com/company/cdr-international-b-v-/about/",
+		theme: "Flood Management"
             },
 	{
                 name: "HKV (LIWO)",
@@ -65,7 +133,8 @@
                 lat: 52.518536,
                 lon: 5.471422,
                 web: "https://www.hkv.nl/projecten/landelijk-informatiesysteem-water-en-overstromingen-liwo/",
-                linkedin: "https://www.linkedin.com/company/hkv-lijn-in-water/about/"
+                linkedin: "https://www.linkedin.com/company/hkv-lijn-in-water/about/",
+		theme: "Flood Management"
             },
 	{
                 name: "HydroLogic (Pearl)",
@@ -75,7 +144,8 @@
                 lat: 52.136113,
                 lon: 5.387827,
                 web: "https://www.hydrologic.com/projects/pearl/",
-                linkedin: "https://www.linkedin.com/company/hydrologic/about/"
+                linkedin: "https://www.linkedin.com/company/hydrologic/about/",
+		theme: "Flood Management"
             },
 	{
                 name: "Deltares (Delft-FEWS)",
@@ -85,7 +155,8 @@
                 lat: 52.0114017,
                 lon: 4.35839,
                 web: "https://www.deltares.nl/en/expertise/areas-of-expertise/floods",
-                linkedin: "https://www.linkedin.com/company/deltares/about/"
+                linkedin: "https://www.linkedin.com/company/deltares/about/",
+		theme: "Flood Management"
             },
 	{
                 name: "Arcadis (HydroNet)",
@@ -95,7 +166,8 @@
                 lat: 52.3730796,
                 lon: 4.8924534,
                 web: "https://www.arcadis.com/fr-fr/numerique/produits-numeriques/hydronet",
-                linkedin: "https://www.linkedin.com/company/arcadis/about/"
+                linkedin: "https://www.linkedin.com/company/arcadis/about/",
+		theme: "Flood Management"
             },
 	{
                 name: "Witteveen+Bos",
@@ -105,7 +177,8 @@
                 lat: 52.2694896,
                 lon: 6.2364886,
                 web: "https://www.witteveenbos.com/projects/flood-early-warning-system",
-                linkedin: "https://www.linkedin.com/company/witteveen-bos/about/"
+                linkedin: "https://www.linkedin.com/company/witteveen-bos/about/",
+		theme: "Flood Management"
             },
 	{
                 name: "Fugro",
@@ -115,7 +188,8 @@
                 lat: 52.0861654,
                 lon: 4.3946774,
                 web: "https://www.fugro.com/industries/water/climate",
-                linkedin: "https://www.linkedin.com/company/fugro/about/"
+                linkedin: "https://www.linkedin.com/company/fugro/about/",
+		theme: "Flood Management"
             },
  	// Suède
             {
@@ -126,7 +200,8 @@
                 lat: 59.329323,
                 lon: 18.068581,
                 web: "https://www.sweco.co.uk/services/water-energy-industry/water-consultancy/water-management/flood-protection/",
-                linkedin: "https://www.linkedin.com/company/sweco/about/"
+                linkedin: "https://www.linkedin.com/company/sweco/about/",
+		theme: "Flood Management"
             },
 	// Pologne
             {
@@ -137,7 +212,8 @@
                 lat: 52.2319581,
                 lon: 21.0067249,
                 web: "https://isok.gov.pl/hydroportal.html",
-                linkedin: "https://www.linkedin.com/company/wody-polskie/about/"
+                linkedin: "https://www.linkedin.com/company/wody-polskie/about/",
+		theme: "Flood Management"
             },
 	{
                 name: "Esri Polska (ArcGIS PRO / SARscape)",
@@ -147,7 +223,8 @@
                 lat: 52.1319581,
                 lon: 21.0067249,
                 web: "https://esri.pl/arcgis-excalibur/",
-                linkedin: "https://www.linkedin.com/company/esri-polska/about/"
+                linkedin: "https://www.linkedin.com/company/esri-polska/about/",
+		theme: "Flood Management"
             },
 	// Danemark
             {
@@ -158,7 +235,8 @@
                 lat: 55.8832986,
                 lon: 12.5000112,
                 web: "https://www.dhigroup.com/technologies/mikepoweredbydhi/mikeplus-2d-overland",
-                linkedin: "https://www.linkedin.com/company/dhi/about/"
+                linkedin: "https://www.linkedin.com/company/dhi/about/",
+		theme: "Flood Management"
             },
 	// Roumanie
             {
@@ -169,7 +247,8 @@
                 lat: 44.4361414,
                 lon: 26.1027202,
                 web: "https://inundatii.ro/en/flood-risk-management-2/",
-                linkedin: "https://www.linkedin.com/company/inundatiiro/about/"
+                linkedin: "https://www.linkedin.com/company/inundatiiro/about/",
+		theme: "Flood Management"
             },
             // France
             {
@@ -180,7 +259,8 @@
                 lat: 43.8367,
                 lon: 4.3601,
                 web: "https://brli.brl.fr/fr/wimes",
-                linkedin: "https://www.linkedin.com/company/brl-ing-nierie/about/"
+                linkedin: "https://www.linkedin.com/company/brl-ing-nierie/about/",
+		theme: "Flood Management"
             },
             {
                 name: "CS Group (FloodCare)",
@@ -190,7 +270,8 @@
                 lat: 43.5847,
                 lon: 1.4442,
                 web: "https://floodcare.eu/",
-                linkedin: "https://www.linkedin.com/showcase/csgroup-space/about/"
+                linkedin: "https://www.linkedin.com/showcase/csgroup-space/about/",
+		theme: "Flood Management"
             },
             {
                 name: "EXAMO",
@@ -200,7 +281,8 @@
                 lat: 48.8466,
                 lon: 2.3522,
                 web: "https://examo.fr/nos-activites/pca/",
-                linkedin: "https://www.linkedin.com/company/examo/about/"
+                linkedin: "https://www.linkedin.com/company/examo/about/",
+		theme: "Flood Management"
             },
             {
                 name: "GEO4i (Géospace)",
@@ -210,7 +292,8 @@
                 lat: 49.2310,
                 lon: 2.4846,
                 web: "http://geo4i.com/",
-                linkedin: "https://www.linkedin.com/company/geo4i/about/"
+                linkedin: "https://www.linkedin.com/company/geo4i/about/",
+		theme: "Flood Management"
             },
             {
                 name: "HD Rain",
@@ -220,7 +303,8 @@
                 lat: 48.7704,
                 lon: 2.4807,
                 web: "https://www.hd-rain.com/",
-                linkedin: "https://www.linkedin.com/company/hdrain/about/"
+                linkedin: "https://www.linkedin.com/company/hdrain/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Kinéis",
@@ -230,7 +314,8 @@
                 lat: 43.5412,
                 lon: 1.4783,
                 web: "https://www.kineis.com/",
-                linkedin: "https://www.linkedin.com/company/kineis-argos/about/"
+                linkedin: "https://www.linkedin.com/company/kineis-argos/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Magellium (SEED-FD)",
@@ -240,7 +325,8 @@
                 lat: 43.5312,
                 lon: 1.4783,
                 web: "https://www.magellium.com/projet/seed-fd/",
-                linkedin: "https://www.linkedin.com/company/magellium/about/"
+                linkedin: "https://www.linkedin.com/company/magellium/about/",
+		theme: "Flood Management"
             },
             {
                 name: "MidGard (SitGard)",
@@ -250,7 +336,8 @@
                 lat: 41.9192,
                 lon: 8.7386,
                 web: "https://www.midgard-ai.com/",
-                linkedin: "https://www.linkedin.com/company/midgard-ai/about/"
+                linkedin: "https://www.linkedin.com/company/midgard-ai/about/",
+		theme: "Flood Management"
             },
             {
                 name: "NUMERISK",
@@ -260,7 +347,8 @@
                 lat: 46.1603,
                 lon: -1.1511,
                 web: "https://www.numerisk.fr/home",
-                linkedin: "https://www.linkedin.com/company/numerisk/about/"
+                linkedin: "https://www.linkedin.com/company/numerisk/about/",
+		theme: "Flood Management"
             },
             {
                 name: "OgoXe",
@@ -270,7 +358,8 @@
                 lat: 43.5747,
                 lon: 1.4442,
                 web: "https://www.ogoxe.com/",
-                linkedin: "https://www.linkedin.com/company/ogoxe/about/"
+                linkedin: "https://www.linkedin.com/company/ogoxe/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Prométhéé",
@@ -280,7 +369,8 @@
                 lat: 43.5297,
                 lon: 5.4474,
                 web: "https://promethee.earth/catastrophes-naturelles/",
-                linkedin: "https://www.linkedin.com/company/promethee-earthintelligence/about/"
+                linkedin: "https://www.linkedin.com/company/promethee-earthintelligence/about/",
+		theme: "Flood Management"
             },
             {
                 name: "TENEVIA",
@@ -290,7 +380,8 @@
                 lat: 45.2096,
                 lon: 5.7904,
                 web: "https://www.tenevia.com/fr/",
-                linkedin: "https://www.linkedin.com/company/tenevia/about/"
+                linkedin: "https://www.linkedin.com/company/tenevia/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Thales Alenia Space (Flooding Digital Twin)",
@@ -300,7 +391,8 @@
                 lat: 43.5528,
                 lon: 7.0174,
                 web: "https://www.thalesaleniaspace.com/en",
-                linkedin: "https://www.linkedin.com/company/thales-alenia-space/about/"
+                linkedin: "https://www.linkedin.com/company/thales-alenia-space/about/",
+		theme: "Flood Management"
             },
             {
                 name: "VorteX-io",
@@ -310,7 +402,8 @@
                 lat: 43.5547,
                 lon: 1.4442,
                 web: "https://www.vortex-io.fr/",
-                linkedin: "https://www.linkedin.com/company/vortex-io/about/"
+                linkedin: "https://www.linkedin.com/company/vortex-io/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Celest.Science",
@@ -320,7 +413,8 @@
                 lat: 48.8566,
                 lon: 2.3522,
                 web: "https://www.celest.science/use-case",
-                linkedin: "https://www.linkedin.com/company/celestscience/about/"
+                linkedin: "https://www.linkedin.com/company/celestscience/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Blue Water Intelligence",
@@ -330,7 +424,8 @@
                 lat: 43.6147,
                 lon: 1.4442,
                 web: "https://bwi.earth/",
-                linkedin: "https://www.linkedin.com/company/blue-waterintelligence/about/"
+                linkedin: "https://www.linkedin.com/company/blue-waterintelligence/about/",
+		theme: "Flood Management"
             },
             {
                 name: "HETWA (MEWISO Zoom)",
@@ -340,7 +435,8 @@
                 lat: 43.6247,
                 lon: 1.4442,
                 web: "https://hetwa.org/mewiso-zoom/",
-                linkedin: "https://www.linkedin.com/company/hetwa/about/"
+                linkedin: "https://www.linkedin.com/company/hetwa/about/",
+		theme: "Flood Management"
             },
             // Italie
             {
@@ -351,7 +447,8 @@
                 lat: 44.0678,
                 lon: 12.5695,
                 web: "https://saferplaces.co/#our-technology",
-                linkedin: "https://www.linkedin.com/company/saferplacesplatform/about/"
+                linkedin: "https://www.linkedin.com/company/saferplacesplatform/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Griddit (Rebit Solution)",
@@ -361,7 +458,8 @@
                 lat: 41.9028,
                 lon: 12.4964,
                 web: "https://griddit.space/the-rebit-solution/",
-                linkedin: "https://www.linkedin.com/company/griddit/about/"
+                linkedin: "https://www.linkedin.com/company/griddit/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Latitudo 40",
@@ -371,7 +469,8 @@
                 lat: 40.8518,
                 lon: 14.2681,
                 web: "https://www.latitudo40.com/climate-resilience-in-cities",
-                linkedin: "https://www.linkedin.com/company/latitudo-40/about/"
+                linkedin: "https://www.linkedin.com/company/latitudo-40/about/",
+		theme: "Flood Management"
             },
             // Portugal
             {
@@ -382,7 +481,8 @@
                 lat: 38.5711,
                 lon: -7.9135,
                 web: "https://www.watersphere360.com/",
-                linkedin: "https://www.linkedin.com/company/geoterra360/about/"
+                linkedin: "https://www.linkedin.com/company/geoterra360/about/",
+		theme: "Flood Management"
             },
             {
                 name: "GreenMetrics AI",
@@ -392,7 +492,8 @@
                 lat: 38.7223,
                 lon: -9.1393,
                 web: "https://www.greenmetrics.ai/fr/city",
-                linkedin: "https://www.linkedin.com/company/greenmetrics-ai/about/"
+                linkedin: "https://www.linkedin.com/company/greenmetrics-ai/about/",
+		theme: "Flood Management"
             },
 		{
                 name: "GEOSAT",
@@ -402,7 +503,8 @@
                 lat: 41.1806814,
                 lon: -8.6821998,
                 web: "https://geosat.space/markets/emergency-and-disaster/",
-                linkedin: "https://www.linkedin.com/company/globaleosatellites/about/"
+                linkedin: "https://www.linkedin.com/company/globaleosatellites/about/",
+		theme: "Flood Management"
             },
             // Espagne
             {
@@ -413,7 +515,8 @@
                 lat: 41.6176,
                 lon: 0.6200,
                 web: "https://www.arantec.com/fr/smarty-river/",
-                linkedin: "https://www.linkedin.com/company/arantec-engineering/about/"
+                linkedin: "https://www.linkedin.com/company/arantec-engineering/about/",
+		theme: "Flood Management"
             },
             {
                 name: "GMV (Eoclima)",
@@ -423,7 +526,8 @@
                 lat: 40.4168,
                 lon: -3.7038,
                 web: "https://www.gmv.com/en/products/space/eoclima",
-                linkedin: "https://www.linkedin.com/company/gmv/about/"
+                linkedin: "https://www.linkedin.com/company/gmv/about/",
+		theme: "Flood Management"
             },
             {
                 name: "IntelliAlert (Tecnalia)",
@@ -433,7 +537,8 @@
                 lat: 43.3000,
                 lon: -2.8833,
                 web: "https://fastflooding.com/intellialert/",
-                linkedin: "https://www.linkedin.com/company/intellialert/about/"
+                linkedin: "https://www.linkedin.com/company/intellialert/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Lobelia Earth",
@@ -443,7 +548,8 @@
                 lat: 41.3851,
                 lon: 2.1734,
                 web: "https://www.lobelia.earth/",
-                linkedin: "https://www.linkedin.com/company/lobelia-earth/about/"
+                linkedin: "https://www.linkedin.com/company/lobelia-earth/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Mitiga Solutions (EarthScan)",
@@ -453,7 +559,8 @@
                 lat: 41.3651,
                 lon: 2.1734,
                 web: "https://www.earth-scan.com/#platform",
-                linkedin: "https://www.linkedin.com/company/earthscantm/about/"
+                linkedin: "https://www.linkedin.com/company/earthscantm/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Pulses",
@@ -463,7 +570,8 @@
                 lat: 41.4051,
                 lon: 2.1734,
                 web: "https://earthpulse.ai/",
-                linkedin: "https://www.linkedin.com/company/earthpulse-sl/about/"
+                linkedin: "https://www.linkedin.com/company/earthpulse-sl/about/",
+		theme: "Flood Management"
             },
             {
                 name: "Worldsensing",
@@ -473,7 +581,8 @@
                 lat: 41.3451,
                 lon: 2.1734,
                 web: "https://www.worldsensing.com/",
-                linkedin: "https://www.linkedin.com/company/worldsensing/about/"
+                linkedin: "https://www.linkedin.com/company/worldsensing/about/",
+		theme: "Flood Management"
             },
              {
                 name: "SATLANTIS",
@@ -483,32 +592,74 @@
                 lat: 43.3100,
                 lon: -2.9500,
                 web: "https://www.satlantis.com/aplications/other-applications/",
-                linkedin: "https://www.linkedin.com/company/satlantis/about/"
+                linkedin: "https://www.linkedin.com/company/satlantis/about/",
+		theme: "Flood Management"
             }
         ];
 
-        // Initialisation de la carte centrée sur l'Europe
+        // Prépare une liste de thèmes
+        const themes = [
+            "Flood Management",
+            "SSA",
+        ];
+
         const map = L.map('map').setView([48.5, 8], 5);
 
-        // Fond de carte OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Ajout des marqueurs
-        companies.forEach(company => {
-            if (company.lat && company.lon) {
-                L.marker([company.lat, company.lon])
-                    .addTo(map)
-                    .bindPopup(
-                        `<strong>${company.name}</strong><br>
-                        <em>${company.city}, ${company.country}</em><br>
-                        <small>${company.activity}</small><br>
-                        ${company.web ? `<a href="${company.web}" target="_blank">Site web</a> | ` : ''}
-                        ${company.linkedin ? `<a href="${company.linkedin}" target="_blank">LinkedIn</a>` : ''}`
-                    );
-            }
+        let markersLayer = L.layerGroup().addTo(map);
+
+        function updateMarkers(selectedCountries, selectedThemes) {
+            markersLayer.clearLayers();
+            companies.forEach(company => {
+                const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(company.country);
+                const matchesTheme = selectedThemes.length === 0 || selectedThemes.some(theme => (company.theme || []).includes(theme));
+
+                if (company.lat && company.lon && matchesCountry && matchesTheme) {
+                    L.marker([company.lat, company.lon])
+                        .addTo(markersLayer)
+                        .bindPopup(
+                            `<strong>${company.name}</strong><br>
+                            <em>${company.city}, ${company.country}</em><br>
+                            <small>${company.activity}</small><br>
+                            ${company.web ? `<a href="${company.web}" target="_blank">Site web</a> | ` : ''}
+                            ${company.linkedin ? `<a href="${company.linkedin}" target="_blank">LinkedIn</a>` : ''}`
+                        );
+                }
+            });
+        }
+
+        // Création des filtres dynamiques
+        const countries = [...new Set(companies.map(c => c.country))].sort();
+        const countryFiltersDiv = document.getElementById('country-filters');
+
+        countries.forEach(country => {
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="checkbox" value="${country}" checked> ${country}`;
+            countryFiltersDiv.appendChild(label);
         });
+
+        const themeFiltersDiv = document.getElementById('theme-filters');
+
+        themes.forEach(theme => {
+            const label = document.createElement('label');
+            label.innerHTML = `<input type="checkbox" value="${theme}" checked> ${theme}`;
+            themeFiltersDiv.appendChild(label);
+        });
+
+        function getSelectedValues(containerId) {
+            return Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(input => input.value);
+        }
+
+        document.getElementById('filter-box').addEventListener('change', () => {
+            const selectedCountries = getSelectedValues('country-filters');
+            const selectedThemes = getSelectedValues('theme-filters');
+            updateMarkers(selectedCountries, selectedThemes);
+        });
+
+        updateMarkers(countries, themes);
     </script>
 </body>
 </html>
