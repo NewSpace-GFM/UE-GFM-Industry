@@ -58,13 +58,25 @@
       transition: max-height 0.4s ease;
     }
     .filter-content.open {
-      max-height: 500px; /* suffisamment grand pour contenir les options */
-      transition: max-height 0.4s ease;
+      max-height: 300px;
+      margin-top: 8px;
     }
-    .filter-content label {
+    .filter-scrollable {
+      max-height: 200px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+    .filter-scrollable label {
       display: block;
       margin: 5px 0;
       font-size: 14px;
+    }
+    .filter-scrollable::-webkit-scrollbar {
+      width: 6px;
+    }
+    .filter-scrollable::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -83,7 +95,9 @@
       <span id="theme-arrow" class="filter-arrow">◀</span>
     </div>
     <div id="theme-content" class="filter-content">
-      <!-- Cases à cocher Thèmes -->
+      <div class="filter-scrollable" id="theme-checkboxes">
+        <!-- Cases à cocher Thèmes -->
+      </div>
     </div>
   </div>
 
@@ -93,10 +107,11 @@
       <span id="country-arrow" class="filter-arrow">◀</span>
     </div>
     <div id="country-content" class="filter-content">
-      <!-- Cases à cocher Pays -->
+      <div class="filter-scrollable" id="country-checkboxes">
+        <!-- Cases à cocher Pays -->
+      </div>
     </div>
   </div>
-
 </div>
 
 <!-- Leaflet JS -->
@@ -629,16 +644,16 @@
             "SSA",
         ];
 
-        // Carte
+        // Création de la carte
 const map = L.map('map').setView([48.5, 8], 5);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors|CS Group'
+  attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
 let markersLayer = L.layerGroup().addTo(map);
 
-// Fonction de mise à jour des marqueurs
+// Affiche les marqueurs filtrés
 function updateMarkers(selectedThemes, selectedCountries) {
   markersLayer.clearLayers();
   companies.forEach(company => {
@@ -659,7 +674,7 @@ function updateMarkers(selectedThemes, selectedCountries) {
   });
 }
 
-// Génère les cases à cocher
+// Génère les cases à cocher dynamiquement
 function createCheckboxes(containerId, items) {
   const container = document.getElementById(containerId);
   items.forEach(item => {
@@ -669,23 +684,24 @@ function createCheckboxes(containerId, items) {
   });
 }
 
-createCheckboxes('theme-content', themes);
-
+// Init thèmes et pays
+createCheckboxes('theme-checkboxes', themes);
 const countries = [...new Set(companies.map(c => c.country))].sort();
-createCheckboxes('country-content', countries);
+createCheckboxes('country-checkboxes', countries);
 
-// Gère les filtres sélectionnés
+// Récupère les valeurs cochées
 function getSelectedValues(containerId) {
   return Array.from(document.querySelectorAll(`#${containerId} input:checked`)).map(input => input.value);
 }
 
+// Met à jour les marqueurs au changement
 document.getElementById('filter-box').addEventListener('change', () => {
-  const selectedThemes = getSelectedValues('theme-content');
-  const selectedCountries = getSelectedValues('country-content');
+  const selectedThemes = getSelectedValues('theme-checkboxes');
+  const selectedCountries = getSelectedValues('country-checkboxes');
   updateMarkers(selectedThemes, selectedCountries);
 });
 
-// Gestion des menus dépliants + rotation flèche
+// Déplie / replie un groupe
 function toggleFilter(contentId, arrowId) {
   const content = document.getElementById(contentId);
   const arrow = document.getElementById(arrowId);
@@ -699,7 +715,7 @@ function toggleFilter(contentId, arrowId) {
   }
 }
 
-// Affiche tous les marqueurs au départ
+// Affichage initial complet
 updateMarkers(themes, countries);
 </script>
 
