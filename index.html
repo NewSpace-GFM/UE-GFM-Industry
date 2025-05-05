@@ -87,7 +87,7 @@
 
 <!-- Boîte de filtres -->
 <div id="filter-box">
-  <h3>Filters</h3>
+  <h3>Filtres</h3>
 
   <div class="filter-group">
     <div class="filter-header" onclick="toggleFilter('theme-content', 'theme-arrow')">
@@ -118,7 +118,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-        // Tableau combiné des entreprises européennes
+        // Tableau combiné des entreprises européennes (Flood Management)
         const companies = [
             // Belgique
             {
@@ -126,33 +126,42 @@
                 activity: "Service that will provide prompt, up-to-date situational awareness information to crisis and disaster management organisations in Europe",
                 city: "Wavre",
                 country: "Belgium",
-                lat: 50.7139,
-                lon: 4.6136,
+                lat: 50.7306066,
+                lon: 4.5879062,
                 web: "https://www.stariongroup.eu/starion-leads-development-of-safeplace-crisis-response-platform/",
                 linkedin: "https://www.linkedin.com/company/stariongroup/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "501 - 1 000",
+		founded: "2024",
+		logo: "https://media.licdn.com/dms/image/v2/D4E0BAQFiQ8VjN1f9Cg/company-logo_200_200/company-logo_200_200/0/1713521403413/stariongroup_logo?e=1752105600&v=beta&t=Qe7OxmuZTn5ATRmdOCIzdph4aXOJdy96MPMASaWkrBo"
             },
 	   {
                 name: "IMDC",
                 activity: "Vast experience through water related studies such as flood risk assessment, hydraulic modelling, coastal protection, sedimentation risks, dredging engineering...",
                 city: "Antwerp",
                 country: "Belgium",
-                lat: 51.219448,
-                lon: 4.402464,
+                lat: 51.2111543,
+                lon: 4.4228932,
                 web: "https://imdc.be/en/reference/fews-floodforecast",
-                linkedin: "https://www.linkedin.com/company/imdc/",
-		theme: "Flood Management"
+                linkedin: "https://www.linkedin.com/company/imdc/about/",
+		theme: "Flood Management",
+		employees: "51 - 200",
+		founded: "1982",
+		logo: "https://media.licdn.com/dms/image/v2/C4D0BAQEnUEJosV-0Hg/company-logo_200_200/company-logo_200_200/0/1631358566938/imdc_logo?e=1752105600&v=beta&t=Hk9j5ukFhRTzo_a553rc3AGeCQri4nAqfoN9cw23ImE"
             },
   	 {
                 name: "HAEDES (Mira X)",
                 activity: "Flood and drought (operational) forecasting & warning system/Hydrology & hydrogeology/Hazard, Vulnerability and Risk Assessment...",
                 city: "Gent",
                 country: "Belgium",
-                lat: 51.053822,
-                lon: 3.722270,
+                lat: 51.0108215,
+                lon: 3.8416668,
                 web: "https://haedes.eu/climate-resilience-sustainable-water-systems/",
                 linkedin: "https://www.linkedin.com/company/haedes-bv/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2020",
+		logo: "https://media.licdn.com/dms/image/v2/C4E0BAQHv_gHMkakD-A/company-logo_200_200/company-logo_200_200/0/1630597065760?e=1752105600&v=beta&t=VSQKqQxpKkw31RCRKE411AQ4FxSMli-fAn_SZ3NV-gM"
             },
 	    // Pays-Bas
             {
@@ -160,77 +169,98 @@
                 activity: "Climate Change Vulnerability, Flood Risk and Urban Water Management, Ports and Waterways, Geosynthetics, Integrated Water Management, Resilience and Adaptation...",
                 city: "Amersfoort",
                 country: "Netherlands",
-                lat: 52.156113,
-                lon: 5.387827,
+                lat: 52.152496337890625,
+                lon: 5.373249053955078,
                 web: "https://cdr-international.nl/disciplines/flood-risk-and-urban-water-management/",
                 linkedin: "https://www.linkedin.com/company/cdr-international-b-v-/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2012",
+		logo: "https://media.licdn.com/dms/image/v2/C4D0BAQE7rUFl7y5I5A/company-logo_200_200/company-logo_200_200/0/1630530173802/cdr_international_b_v__logo?e=1752105600&v=beta&t=rCwmji0QjIsz2nT8l1-ZeeHy3a4gGXgt7fkr4M3a_R4"
             },
 	{
                 name: "HKV (LIWO)",
                 activity: "LIWO maps for the Dutch government include maximum flood depths, flood probabilities, evacuation ratings and information on zone classification and boundaries...",
                 city: "Lelystad",
                 country: "Netherlands",
-                lat: 52.518536,
-                lon: 5.471422,
+                lat: 52.5037845,
+                lon: 5.4616832,
                 web: "https://www.hkv.nl/projecten/landelijk-informatiesysteem-water-en-overstromingen-liwo/",
                 linkedin: "https://www.linkedin.com/company/hkv-lijn-in-water/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "51 - 200",
+		founded: "1995",
+		logo: "https://media.licdn.com/dms/image/v2/C4D0BAQEZVgM8W3JVOg/company-logo_200_200/company-logo_200_200/0/1631322330560?e=1752105600&v=beta&t=AxhTdl4N7Xbp00dlZvr-5fdbg9SRTiLICBbwYaXyDeQ"
             },
 	{
                 name: "HydroLogic (Pearl)",
                 activity: "Digital technologies such as IoT, AI and Big Data are further developed, tested and used to create meaningful real-time predictions on water quantity and quality in the urban environment",
                 city: "Amersfoort",
                 country: "Netherlands",
-                lat: 52.136113,
-                lon: 5.387827,
+                lat: 52.1550766,
+                lon: 5.383267,
                 web: "https://www.hydrologic.com/projects/pearl/",
                 linkedin: "https://www.linkedin.com/company/hydrologic/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2000",
+		logo: "https://media.licdn.com/dms/image/v2/C560BAQFPI8Ehc7D_4A/company-logo_200_200/company-logo_200_200/0/1630596312146/hydrologic_logo?e=1752105600&v=beta&t=wsBwnuSYTf0ZNGbk3jQIuGlFT9RataMysbqbA0kIV80"
             },
 	{
                 name: "Deltares (Delft-FEWS)",
                 activity: "Independent institute for applied research in the field of water, subsurface. Managing densely populated and vulnerable areas to climate change, flood risk",
                 city: "Delft",
                 country: "Netherlands",
-                lat: 52.0114017,
-                lon: 4.35839,
+                lat: 51.9851003,
+                lon: 4.3813444,
                 web: "https://www.deltares.nl/en/expertise/areas-of-expertise/floods",
                 linkedin: "https://www.linkedin.com/company/deltares/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "+ 1 000",
+		founded: "2008",
+		logo: "https://media.licdn.com/dms/image/v2/C4E0BAQFQ03SpsCfp7w/company-logo_200_200/company-logo_200_200/0/1630608142008/deltares_logo?e=1752105600&v=beta&t=2cv5cxnhxmETM8almwqHQEe3r6d2m5HhTWLGx6g3KtM"
             },
 	{
                 name: "Arcadis (HydroNet)",
                 activity: "Anticipating flood risks and their effects on populations.customers are able to consider asset management strategies and make effective investment decisions, whether they concern drought management, flood risk and warning management, surface water warning systems or emergency planning...",
                 city: "Amsterdam",
                 country: "Netherlands",
-                lat: 52.3730796,
-                lon: 4.8924534,
+                lat: 52.337461,
+                lon: 4.8733524,
                 web: "https://www.arcadis.com/fr-fr/numerique/produits-numeriques/hydronet",
                 linkedin: "https://www.linkedin.com/company/arcadis/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "+ 36 001",
+		founded: "1888",
+		logo: "https://media.licdn.com/dms/image/v2/D560BAQENjWtigNGe9w/company-logo_200_200/company-logo_200_200/0/1720420615682/arcadis_logo?e=1752105600&v=beta&t=XbMVp4lPgaEWEPnEWUFhNEXraXqgBId44vVa_jMUJKs"
             },
 	{
                 name: "Witteveen+Bos",
                 activity: "Development and elaboration a flood early warning system, consisting of a data information module, a hydrodynamic forecasting computer model and a communication system. Data analysis was carried out to generate the input for the hydrodynamic forecasting.",
                 city: "Deventer",
                 country: "Netherlands",
-                lat: 52.2694896,
-                lon: 6.2364886,
+                lat: 52.2552207,
+                lon: 6.1620574,
                 web: "https://www.witteveenbos.com/projects/flood-early-warning-system",
                 linkedin: "https://www.linkedin.com/company/witteveen-bos/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "1 001 - 5 000",
+		founded: "1946",
+		logo: "https://media.licdn.com/dms/image/v2/C4D0BAQGbiHnvROshlw/company-logo_200_200/company-logo_200_200/0/1631307637585?e=1752105600&v=beta&t=l-rHZcHeXvBpmnMm6_r9JToaKFMMpXHwNKTY92LX0o8"
             },
 	{
                 name: "Fugro",
                 activity: "Expertise in mapping, modelling, and monitoring, combined with consultancy, to help you understand climate impact, adapt to climate impact, and track climate impact.",
                 city: "Leidschendam",
                 country: "Netherlands",
-                lat: 52.0861654,
-                lon: 4.3946774,
+                lat: 52.0958214,
+                lon: 4.4050631,
                 web: "https://www.fugro.com/industries/water/climate",
                 linkedin: "https://www.linkedin.com/company/fugro/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "+ 10 001",
+		founded: "1962",
+		logo: "https://media.licdn.com/dms/image/v2/C560BAQHg3VjvnoShqQ/company-logo_200_200/company-logo_200_200/0/1630611458576/fugro_logo?e=1752105600&v=beta&t=3Fj-M5nesnIEYN85EKmpLMybjaaBh95he30DQ0ac4ZM"
             },
  	// Suède
             {
@@ -238,11 +268,14 @@
                 activity: "Flood Risk Management Consultancy (hydrology, network and fluvial modelling, field survey, geomorphology, natural processes, ecology, design and economic assessments)",
                 city: "Stockholm",
                 country: "Sweden",
-                lat: 59.329323,
-                lon: 18.068581,
+                lat: 59.3278167,
+                lon: 18.0180859,
                 web: "https://www.sweco.co.uk/services/water-energy-industry/water-consultancy/water-management/flood-protection/",
                 linkedin: "https://www.linkedin.com/company/sweco/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "+ 10 001",
+		founded: "1997",
+		logo: "https://media.licdn.com/dms/image/v2/C4D0BAQFTuOGX9zJ92g/company-logo_200_200/company-logo_200_200/0/1630491196923/sweco_logo?e=1752105600&v=beta&t=11ZYhk-AnF6WHhvNUWvl1KnXcMr5ERUnQ3sc5FMNiWM"
             },
 	// Pologne
             {
@@ -250,22 +283,28 @@
                 activity: "Competencies of water resources management. Wody Polskie is responsible for protecting our country's residents from floods and droughts",
                 city: "Warsaw",
                 country: "Poland",
-                lat: 52.2319581,
-                lon: 21.0067249,
+                lat: 52.25,
+                lon: 21,
                 web: "https://isok.gov.pl/hydroportal.html",
                 linkedin: "https://www.linkedin.com/company/wody-polskie/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "5 001 - 10 000",
+		founded: "2018",
+		logo: "https://media.licdn.com/dms/image/v2/D4D0BAQG1Wcs9AFDtNQ/company-logo_200_200/company-logo_200_200/0/1690365582452/wody_polskie_logo?e=1752105600&v=beta&t=ZtfBpMhpkH0gSPrJExzFPxpABCgG4EW-J4T1Mxcufcw"
             },
 	{
                 name: "Esri Polska (ArcGIS PRO / SARscape)",
                 activity: "Radar image analysis (SAR) for flood mapping to enable customers to make strategic decisions more quickly and reduce costs through more efficient working.",
                 city: "Warsaw",
                 country: "Poland",
-                lat: 52.1319581,
-                lon: 21.0067249,
+                lat: 52.2562787,
+                lon: 21.0446824,
                 web: "https://esri.pl/arcgis-excalibur/",
                 linkedin: "https://www.linkedin.com/company/esri-polska/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "51 - 200",
+		founded: "1995",
+		logo: "https://media.licdn.com/dms/image/v2/D4D0BAQHtyUIeMFmxfg/company-logo_200_200/company-logo_200_200/0/1665126819540/esri_polska_logo?e=1752105600&v=beta&t=bjH901F2uINbEuWAdIh_TD6lTAhJtG0GYSvsB3vRnkk"
             },
 	// Danemark
             {
@@ -273,11 +312,14 @@
                 activity: "Flood modelling to predict the impacts of flood events, identify risks, and develop effective mitigation strategies.",
                 city: "Hørsholm",
                 country: "Denmark",
-                lat: 55.8832986,
-                lon: 12.5000112,
+                lat: 55.87148,
+                lon: 12.493797,
                 web: "https://www.dhigroup.com/technologies/mikepoweredbydhi/mikeplus-2d-overland",
                 linkedin: "https://www.linkedin.com/company/dhi/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "1 001 - 5 000",
+		founded: "1964",
+		logo: "https://media.licdn.com/dms/image/v2/D4E0BAQG_IN0u3I4exQ/company-logo_200_200/company-logo_200_200/0/1686652134272/dhi_logo?e=1752105600&v=beta&t=eoqj_HeTARk5YJLKgKK2ts_Mm4K8eAsCa5CGvgrNYiI"
             },
 	// Roumanie
             {
@@ -285,11 +327,14 @@
                 activity: "Romanian government floods management.",
                 city: "Bucarest",
                 country: "Romania",
-                lat: 44.4361414,
-                lon: 26.1027202,
+                lat: 44.43225,
+                lon: 26.10626,
                 web: "https://inundatii.ro/en/flood-risk-management-2/",
                 linkedin: "https://www.linkedin.com/company/inundatiiro/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "201 - 500",
+		founded: "2010",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQG-vRIdrJOR_g/company-logo_200_200/company-logo_200_200/0/1630523387687/inundatiiro_logo?e=1752105600&v=beta&t=ZoBK4a2QUoJ0FxarMDVI2Rw7wYbOEFjQVLJH0gwkVvA"
             },
             // France
             {
@@ -297,77 +342,98 @@
                 activity: "Biodiversity Management and Sustainable Development, Water and Risks, Water Resources Management...",
                 city: "Nîmes",
                 country: "France",
-                lat: 43.8367,
-                lon: 4.3601,
+                lat: 43.8233458,
+                lon: 4.3858502,
                 web: "https://brli.brl.fr/fr/wimes",
                 linkedin: "https://www.linkedin.com/company/brl-ing-nierie/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "201 - 500",
+		founded: "1993",
+		logo:"https://media.licdn.com/dms/image/v2/D4D0BAQFPxpVqinfaDg/company-logo_200_200/company-logo_200_200/0/1703864735953/brl_ing_nierie_logo?e=1752105600&v=beta&t=UP7jDBq5AVlHjUxR0uv1kt5qX37n4cWIokgdv-WY9BU"
             },
             {
                 name: "CS Group (FloodCare)",
                 activity: "Software, Space applications, GEOINT, IMINT, Image Processing, Earth Observation...",
                 city: "Toulouse",
                 country: "France",
-                lat: 43.5847,
-                lon: 1.4442,
+                lat: 43.5777891,
+                lon: 1.4947588,
                 web: "https://floodcare.eu/",
                 linkedin: "https://www.linkedin.com/showcase/csgroup-space/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "1 001 - 5 000",
+		founded: "1990",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQGEL4F7fEyM4w/company-logo_200_200/company-logo_200_200/0/1630549644264/space_cs_logo?e=1752105600&v=beta&t=lIllKjqqj8gkPMAfyzEYsA1nHqHoaxkA5q1mmswnlNM"
             },
             {
-                name: "EXAMO",
+                name: "Bordeaux",
                 activity: "Specialized in expertise and project management assistance of flood risks",
                 city: "Paris",
                 country: "France",
-                lat: 48.8466,
-                lon: 2.3522,
+                lat: 44.8406832,
+                lon: -0.5924487,
                 web: "https://examo.fr/nos-activites/pca/",
                 linkedin: "https://www.linkedin.com/company/examo/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "2 - 10",
+		founded: "2004",
+		logo:"https://media.licdn.com/dms/image/v2/D4E0BAQF_GiiG_47Ufw/company-logo_200_200/company-logo_200_200/0/1664948461302/examo_logo?e=1752105600&v=beta&t=PowOsvH8EEfrzLECMhAaIkBcJSw_nxeI93-vJEoVeMQ"
             },
             {
                 name: "GEO4i (Géospace)",
                 activity: "Imagery Intelligence, Geospatial Intelligence, Data Collection and Management, Imagery Provider, Imagery, GEOINT et IMINT",
                 city: "Creil",
                 country: "France",
-                lat: 49.2310,
-                lon: 2.4846,
+                lat: 49.262617,
+                lon: 2.4754165,
                 web: "http://geo4i.com/",
                 linkedin: "https://www.linkedin.com/company/geo4i/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "2 - 10",
+		founded: "2014",
+		logo:"https://media.licdn.com/dms/image/v2/C4E0BAQF8UYp_XTdvCg/company-logo_200_200/company-logo_200_200/0/1631320793669?e=1752105600&v=beta&t=88rCH8YUHqkX9OmvpfViPaIlVPhP6e9p-Ss7dQ03oxU"
             },
             {
                 name: "HD Rain",
                 activity: "FlashFlood, Forecast, Weather, DeepLearning et MaaS",
                 city: "BONNEUIL-SUR-MARNE",
                 country: "France",
-                lat: 48.7704,
-                lon: 2.4807,
+                lat: 48.8333396,
+                lon: 2.3717968,
                 web: "https://www.hd-rain.com/",
                 linkedin: "https://www.linkedin.com/company/hdrain/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2018",
+		logo:"https://media.licdn.com/dms/image/v2/C4E0BAQHwojMKOHnQoA/company-logo_200_200/company-logo_200_200/0/1657019564147/hd_rain_logo?e=1752105600&v=beta&t=xteZxVW4O-Ttj72YGPTkKExi8qo1PhmhTUs4N-tryL8"
             },
             {
                 name: "Kinéis",
                 activity: "Spatial IoT connectivity/Continuous and reliable data collection/Sending alerts/Fast reaction to limit damage",
-                city: "RAMONVILLE-SAINT-AGNE",
+                city: "Ramonville-Saint-Agne",
                 country: "France",
-                lat: 43.5412,
-                lon: 1.4783,
+                lat: 43.5498438,
+                lon: 1.4857346,
                 web: "https://www.kineis.com/",
                 linkedin: "https://www.linkedin.com/company/kineis-argos/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "+ 50",
+		founded: "2018",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQHZ-s0H8-1C-A/company-logo_200_200/company-logo_200_200/0/1630564049726/kineis_argos_logo?e=1752105600&v=beta&t=ePh0wf0f439B9TuijoBuGCF3ytNcIYxaxtVVvArZ2FQ"
             },
             {
                 name: "Magellium (SEED-FD)",
                 activity: "Earth Observation, GIS, Mapping, Geo Intelligence...",
-                city: "RAMONVILLE-SAINT-AGNE",
+                city: "Ramonville-Saint-Agne",
                 country: "France",
-                lat: 43.5312,
-                lon: 1.4783,
+                lat: 43.5534127,
+                lon: 1.4838386,
                 web: "https://www.magellium.com/projet/seed-fd/",
                 linkedin: "https://www.linkedin.com/company/magellium/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "201 - 500",
+		founded: "1998",
+		logo:"https://media.licdn.com/dms/image/v2/D4E0BAQG-wQIlfTgsUg/company-logo_200_200/company-logo_200_200/0/1733840028203/magellium_logo?e=1752105600&v=beta&t=xNCIfxBmfTjetGPEqVQ-Bwq9RcoT_UiG8Tkts-d13Tg"
             },
             {
                 name: "MidGard (SitGard)",
@@ -378,95 +444,122 @@
                 lon: 8.7386,
                 web: "https://www.midgard-ai.com/",
                 linkedin: "https://www.linkedin.com/company/midgard-ai/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2019",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQGfki-caFlpVQ/company-logo_200_200/company-logo_200_200/0/1635861807970/midgard_ai_logo?e=1752105600&v=beta&t=yytmwRTmoqgYF8Kn3pCHRw5wolH44X0hv6hsf3H3-so"
             },
             {
                 name: "NUMERISK",
                 activity: "Crisis management, Major hazard awareness, Innovation and Plan Communal de Sauvegarde",
                 city: "La Rochelle",
                 country: "France",
-                lat: 46.1603,
-                lon: -1.1511,
+                lat: 46.162094,
+                lon: -1.219878,
                 web: "https://www.numerisk.fr/home",
                 linkedin: "https://www.linkedin.com/company/numerisk/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 -  50",
+		founded: "2019",
+		logo:"https://media.licdn.com/dms/image/v2/D4E0BAQGuvkdHYQAvcQ/company-logo_200_200/company-logo_200_200/0/1687787506956/numerisk_logo?e=1752105600&v=beta&t=lbZzWXSuCBt9uw08uqBOffYoGxzReGIkALicGhu7YKg"
             },
             {
                 name: "OgoXe",
                 activity: "Flood Alert, Geohazards, Environmental Consulting, Numerical modeling, IoT, flood warning system, sensors et smart devices",
                 city: "Toulouse",
                 country: "France",
-                lat: 43.5747,
-                lon: 1.4442,
+                lat: 43.5774494,
+                lon: 1.3766749,
                 web: "https://www.ogoxe.com/",
                 linkedin: "https://www.linkedin.com/company/ogoxe/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "2 - 10",
+		founded: "2014",
+		logo:"https://media.licdn.com/dms/image/v2/C560BAQHII8n3z2HF0g/company-logo_200_200/company-logo_200_200/0/1631432455632/ogoxe_logo?e=1752105600&v=beta&t=Q7mpbcn6Z3wvSqK2VKqvKn7NRZ6xlz7F-MWUekMQ2Qc"
             },
             {
                 name: "Prométhéé",
                 activity: "Spatial, Newspace, IoT, satellites, Earth Intelligence et Space Sovereignty",
                 city: "Aix-en-Provence",
                 country: "France",
-                lat: 43.5297,
-                lon: 5.4474,
+                lat: 43.4954824,
+                lon: 5.3493565,
                 web: "https://promethee.earth/catastrophes-naturelles/",
                 linkedin: "https://www.linkedin.com/company/promethee-earthintelligence/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2020",
+		logo:"https://media.licdn.com/dms/image/v2/D560BAQGBFg5oKMWefQ/company-logo_200_200/company-logo_200_200/0/1686235191244/promthe_newspace_logo?e=1752105600&v=beta&t=c2W4mVj5ZK2qGVzqbHKlfGTue_6otDthA39U0m0txJo"
             },
             {
                 name: "TENEVIA",
                 activity: "Video hydrometry (height, velocity, flow measurement), Hydrological modeling, Decision support solutions, Environmental monitoring, Flood forecasting, Flow simulation, Flood warning and Sensors",
                 city: "Meylan",
                 country: "France",
-                lat: 45.2096,
-                lon: 5.7904,
+                lat: 45.208576,
+                lon: 5.790802,
                 web: "https://www.tenevia.com/fr/",
                 linkedin: "https://www.linkedin.com/company/tenevia/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2012",
+		logo:"https://media.licdn.com/dms/image/v2/D4E0BAQE7se9yBqDD1Q/company-logo_200_200/company-logo_200_200/0/1687185349055/tenevia_logo?e=1752105600&v=beta&t=4gmLOnVIOZUqpQ3x3R_oe-FFVWhHCHp9E8bSdwclaRo"
             },
             {
                 name: "Thales Alenia Space (Flooding Digital Twin)",
                 activity: "Space technologies for Telecommunications, Earth Observation, Navigation, Exploration & Orbital Infrastructures",
                 city: "Cannes",
                 country: "France",
-                lat: 43.5528,
-                lon: 7.0174,
+                lat: 43.541852,
+                lon: 6.95659,
                 web: "https://www.thalesaleniaspace.com/en",
                 linkedin: "https://www.linkedin.com/company/thales-alenia-space/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "5 001 - 10 000",
+		founded: "2007",
+		logo:"https://media.licdn.com/dms/image/v2/C4E0BAQFTxyIDIbNmAw/company-logo_200_200/company-logo_200_200/0/1631352218739?e=1752105600&v=beta&t=Iqs_xslnE31LzU5GWKvkNfe3k3KKW9W97-Yo994mbLw"
             },
             {
                 name: "VorteX-io",
                 activity: "Hydrology, flood prevention, innovation, water management and river monitoring",
                 city: "Toulouse",
                 country: "France",
-                lat: 43.5547,
-                lon: 1.4442,
+                lat: 43.563859,
+                lon: 1.496029,
                 web: "https://www.vortex-io.fr/",
                 linkedin: "https://www.linkedin.com/company/vortex-io/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2019",
+		logo:"https://media.licdn.com/dms/image/v2/C4E0BAQH_PfPoxa_LlA/company-logo_200_200/company-logo_200_200/0/1676450074163/vortex_io_logo?e=1752105600&v=beta&t=0GNrMnEipl7-cyIWaOqd3Vx_qjGwR8Zz6_0oPCBLRic"
             },
             {
                 name: "Celest.Science",
                 activity: "AI, Climat science (hydrology)",
                 city: "Paris",
                 country: "France",
-                lat: 48.8566,
-                lon: 2.3522,
+                lat: 48.8677588,
+                lon: 2.3496457,
                 web: "https://www.celest.science/use-case",
                 linkedin: "https://www.linkedin.com/company/celestscience/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2023",
+		logo:"https://media.licdn.com/dms/image/v2/D4E0BAQGdzR24Nm-naw/company-logo_200_200/B4EZY.jCt5GYAI-/0/1744806096259/celestscience_logo?e=1752105600&v=beta&t=zYT9As8wlPm7fhrBSGXLwgp69s6CxPrJlt5QZLaZtDs"
             },
             {
                 name: "Blue Water Intelligence",
                 activity: "Hydrological forecasting on top of near real-time continental freshwater monitoring",
                 city: "Toulouse",
                 country: "France",
-                lat: 43.6147,
-                lon: 1.4442,
+                lat: 43.5473426,
+                lon: 1.3966691,
                 web: "https://bwi.earth/",
                 linkedin: "https://www.linkedin.com/company/blue-waterintelligence/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2022",
+		logo:"https://media.licdn.com/dms/image/v2/D4D0BAQEdYx0nwgNvlw/company-logo_200_200/company-logo_200_200/0/1665506637462/blue_waterintelligence_logo?e=1752105600&v=beta&t=bJDbYJiIVqPhWOF8WT67N9KwK6_sFySssXQiTW_Yvn8"
             },
             {
                 name: "HETWA (MEWISO Zoom)",
@@ -477,7 +570,10 @@
                 lon: 1.4442,
                 web: "https://hetwa.org/mewiso-zoom/",
                 linkedin: "https://www.linkedin.com/company/hetwa/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "2 - 10",
+		founded: "2020",
+		logo:"https://media.licdn.com/dms/image/v2/D4D0BAQEQ-IGcpl3EDg/company-logo_200_200/B4DZY5_8uOHwAM-/0/1744729788075/hetwa_logo?e=1752105600&v=beta&t=G72olZO4ejzWheNpeegMORNjArUUIw1bSzWCVMBCMEI"
             },
             // Italie
             {
@@ -485,33 +581,42 @@
                 activity: "AI-based Digital Twin Solution for Flood Risk Intelligence in Urban Areas",
                 city: "Rimini",
                 country: "Italy",
-                lat: 44.0678,
-                lon: 12.5695,
+                lat: 44.0684117,
+                lon: 12.5426646,
                 web: "https://saferplaces.co/#our-technology",
                 linkedin: "https://www.linkedin.com/company/saferplacesplatform/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "2 - 10",
+		founded: "2018",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQHZAjJRFBdq_Q/company-logo_200_200/company-logo_200_200/0/1641398065289?e=1752105600&v=beta&t=_c0TtxxZZQuLqN9weOqJeNgc-jP7x5MBAHepPIJI_sg"
             },
             {
                 name: "Griddit (Rebit Solution)",
                 activity: "Earth Observation and Geospatial intelligence service – the REBIT solution – to tackle water, environmental and societal challenges with major focus on flood risk.",
                 city: "Roma",
                 country: "Italy",
-                lat: 41.9028,
-                lon: 12.4964,
+                lat: 41.9312415,
+                lon: 12.6306557,
                 web: "https://griddit.space/the-rebit-solution/",
                 linkedin: "https://www.linkedin.com/company/griddit/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "2 - 10",
+		founded: "2021",
+		logo:"https://media.licdn.com/dms/image/v2/C4E0BAQF0snqUtxCbmg/company-logo_200_200/company-logo_200_200/0/1634823041399?e=1752105600&v=beta&t=cqlUv7uJRDuJCr5BoKfCCpql-vxHUh7jmyxQ0MvSvg8"
             },
             {
                 name: "Latitudo 40",
                 activity: "Earth observation, AI, geoinformation, urban analytics, infrastructure monitoring...",
                 city: "Napoli",
                 country: "Italy",
-                lat: 40.8518,
-                lon: 14.2681,
+                lat: 40.8464162,
+                lon: 14.287338,
                 web: "https://www.latitudo40.com/climate-resilience-in-cities",
                 linkedin: "https://www.linkedin.com/company/latitudo-40/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2017",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQG7OjMA9mrSvg/company-logo_200_200/company-logo_200_200/0/1668081254529/latitudo_40_logo?e=1752105600&v=beta&t=6v_rIgLm3n_wL3oDg6m7PsIWQ-UDY5AdrAaIWGC6W4k"
             },
             // Portugal
             {
@@ -519,33 +624,42 @@
                 activity: "Monitoring high rainfall events for flood prediction/Demarcation of flooding servitudes due to frequent inundation/Supporting hydro power and flood release decisions",
                 city: "Evora",
                 country: "Portugal",
-                lat: 38.5711,
-                lon: -7.9135,
+                lat: 38.5482867,
+                lon: -7.910621,
                 web: "https://www.watersphere360.com/",
                 linkedin: "https://www.linkedin.com/company/geoterra360/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2022",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQEEz9VMEAKyWw/company-logo_200_200/company-logo_200_200/0/1663137622599?e=1752105600&v=beta&t=6Oh2ldakce45lyDwl2lrENTC6ElU8YYpFctM0bQ3A98"
             },
             {
                 name: "GreenMetrics AI",
                 activity: "Ultra-Early Flood Detection/Real-time Monitoring/Alerts in under 10 seconds",
                 city: "Lisbon",
                 country: "Portugal",
-                lat: 38.7223,
-                lon: -9.1393,
+                lat: 38.7246005,
+                lon: -9.2497701,
                 web: "https://www.greenmetrics.ai/fr/city",
                 linkedin: "https://www.linkedin.com/company/greenmetrics-ai/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "2 - 10",
+		founded: "2022",
+		logo:"https://media.licdn.com/dms/image/v2/D4D0BAQEPDCge4kBniw/company-logo_200_200/company-logo_200_200/0/1687333672463?e=1752105600&v=beta&t=3O03IktxKO1HbM4mBBQ9YxfBEWzDd4rKFLihXZkN5XI"
             },
 		{
                 name: "GEOSAT",
                 activity: "Accurate, scientific-quality data through our 24/7 emergency service, down to 20 minutes from acquisition for satellite disaster management, to help make reliable decisions for impact mitigation and emergency response under time pressure.",
                 city: "Matosinhos",
                 country: "Portugal",
-                lat: 41.1806814,
-                lon: -8.6821998,
+                lat: 41.1725984,
+                lon: -8.6799227,
                 web: "https://geosat.space/markets/emergency-and-disaster/",
                 linkedin: "https://www.linkedin.com/company/globaleosatellites/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "51 - 200",
+		founded: "",
+		logo:"https://media.licdn.com/dms/image/v2/D4D0BAQHm0VM_6Ccv_g/company-logo_200_200/company-logo_200_200/0/1694418154388/globaleosatellites_logo?e=1752105600&v=beta&t=HZzObQxrIgcr6JRun-0YwfA_ZWWreEbflqfqaFGu0ME"
             },
             // Espagne
             {
@@ -553,22 +667,29 @@
                 activity: "Autonomous Meteorological Stations, Telecontrol and on-line monitoring of sensors, Flood monitoring, IoT, smart cities, environmental variables, WSN and wireless technology...",
                 city: "Lleida",
                 country: "Spain",
-                lat: 41.6176,
-                lon: 0.6200,
+                lat: 41.61674,
+                lon: 0.62218,
                 web: "https://www.arantec.com/fr/smarty-river/",
                 linkedin: "https://www.linkedin.com/company/arantec-engineering/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "51 - 100",
+		founded: "2006",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQFp4BSvL8DHzg/company-logo_200_200/company-logo_200_200/0/1673453707527/arantec_engineering_logo?e=1752105600&v=beta&t=03wlTZCZQ9yiCx1R4h8UGjPKOLTxLox-2N3MgVjjrDU"
             },
             {
                 name: "GMV (Eoclima)",
                 activity: "Impact of riverine flood events, ecosystem impact studies, calculates current river flood risk estimates for different return periods, and assesses river flood risk using future projections and RCP scenarios",
                 city: "Madrid",
                 country: "Spain",
-                lat: 40.4168,
-                lon: -3.7038,
+                lat: 40.59131,
+                lon: -3.7065756,
                 web: "https://www.gmv.com/en/products/space/eoclima",
                 linkedin: "https://www.linkedin.com/company/gmv/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "1 001 - 5 000",
+		founded: "1984",
+		logo:"https://media.licdn.com/dms/image/v2/D4D0BAQFnjYaT3-0pCQ/company-logo_200_200/company-logo_200_200/0/1735806566171/gmv_logo?e=1752105600&v=beta&t=LgVltPMF9racLnAONDh07Wj56-Ovbmby-OQP6ZK7KZw"
+
             },
             {
                 name: "IntelliAlert (Tecnalia)",
@@ -579,62 +700,80 @@
                 lon: -2.8833,
                 web: "https://fastflooding.com/intellialert/",
                 linkedin: "https://www.linkedin.com/company/intellialert/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "2 - 10",
+		founded: "2023",
+		logo:"https://media.licdn.com/dms/image/v2/D4D0BAQHlcJziQjknnQ/company-logo_200_200/company-logo_200_200/0/1727778287693/intellialert_logo?e=1752105600&v=beta&t=ItBinhFEK9K5HjmpiqDmo6Gb0zu_EyAEOTgD_i6l91c"
             },
             {
                 name: "Lobelia Earth",
                 activity: "Earth Observation data and climate projections for the assessment of vulnerabilities, risks and opportunities associated to climate scenarios for each particular case and region of interest. We work on monitoring, forecasting and planning, often from open and free data",
                 city: "Barcelona",
                 country: "Spain",
-                lat: 41.3851,
-                lon: 2.1734,
+                lat: 41.3724385,
+                lon: 2.0191759,
                 web: "https://www.lobelia.earth/",
                 linkedin: "https://www.linkedin.com/company/lobelia-earth/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2020",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQHgMsof1kbNyQ/company-logo_200_200/company-logo_200_200/0/1635186542385/lobelia_earth_logo?e=1752105600&v=beta&t=23k2PLwgKDo9KyjLf8WmmIkJjkN7UWouabgCn-pfVls"
             },
             {
                 name: "Mitiga Solutions (EarthScan)",
                 activity: "Climate Intelligence, Climate Risk, Machine Learning, Artificial Intelligence, Weather Risks, Risk Simulations, Climate Adaptation...",
                 city: "Barcelona",
                 country: "Spain",
-                lat: 41.3651,
-                lon: 2.1734,
+                lat: 41.3861864,
+                lon: 2.1750318,
                 web: "https://www.earth-scan.com/#platform",
                 linkedin: "https://www.linkedin.com/company/earthscantm/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "51 - 200",
+		founded: "2018",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQEAWBBPCsyOQA/company-logo_200_200/company-logo_200_200/0/1636016554793/mitigasolutions_logo?e=1752105600&v=beta&t=v2X1aeLMXHJy3vmDyrLKJfT_220rp4h8YzLzBQQq8uE"
             },
             {
                 name: "Pulses",
                 activity: "Risk evaluation/Impact assesment/Opportunitiues discovery/Sustainability compliance/Asset management",
                 city: "Barcelona",
                 country: "Spain",
-                lat: 41.4051,
-                lon: 2.1734,
+                lat: 41.4079211,
+                lon: 2.1301188,
                 web: "https://earthpulse.ai/",
                 linkedin: "https://www.linkedin.com/company/earthpulse-sl/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "11 - 50",
+		founded: "2020",
+		logo:"https://media.licdn.com/dms/image/v2/C4D0BAQFWu_7M80Tsyw/company-logo_200_200/company-logo_200_200/0/1631606896343/earthpulse_sl_logo?e=1752105600&v=beta&t=BMeSCSup0KkGwfmlU-xrkHh00fmR7euptRd41j2N3rk"
             },
             {
                 name: "Worldsensing",
                 activity: "Industrial Internet, Business Process, Machine-to-Machine (M2M), Wireless Sensor Networks, Cloud Computing and Processing, Wireless Instrumentation and Dataloggers et Wireless Seismic Acquisition",
                 city: "Barcelona",
                 country: "Spain",
-                lat: 41.3451,
-                lon: 2.1734,
+                lat: 41.3807651,
+                lon: 2.1412087,
                 web: "https://www.worldsensing.com/",
                 linkedin: "https://www.linkedin.com/company/worldsensing/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "51 - 200",
+		founded: "2008",
+		logo:"https://media.licdn.com/dms/image/v2/C560BAQH8PmuKdS34dA/company-logo_200_200/company-logo_200_200/0/1631417130844/worldsensing_logo?e=1752105600&v=beta&t=T_3QlrTcM_W2Aetn37AmV6FEdaVR3OzlcoSW1giAA18"
             },
              {
                 name: "SATLANTIS",
                 activity: "Fast and draft damage map during Natural Disaster enables fast crisis response",
                 city: "Leioa",
                 country: "Spain",
-                lat: 43.3100,
-                lon: -2.9500,
+                lat: 43.3333,
+                lon: -2.9833,
                 web: "https://www.satlantis.com/aplications/other-applications/",
                 linkedin: "https://www.linkedin.com/company/satlantis/about/",
-		theme: "Flood Management"
+		theme: "Flood Management",
+		employees: "51 - 200",
+		founded: "2014",
+		logo:"https://media.licdn.com/dms/image/v2/C4E0BAQFFEQ2AIsymhA/company-logo_200_200/company-logo_200_200/0/1631318332966?e=1752105600&v=beta&t=lt_k2zDUxCtZ6DBYU3hRc7Vtz9P5Y9ZZDVL6A3H5Er0"
             }
         ];
 
@@ -647,33 +786,74 @@
         // Création de la carte
 const map = L.map('map').setView([48.5, 8], 5);
 
+// Icônes personnalisées (même forme, couleurs différentes)
+const blueIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+const redIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors | by CS Group'
+  attribution: '© OpenStreetMap contributors | CS Group'
 }).addTo(map);
 
 let markersLayer = L.layerGroup().addTo(map);
 
 // Affiche les marqueurs filtrés
-function updateMarkers(selectedThemes, selectedCountries) {
+function updateMarkers() {
   markersLayer.clearLayers();
+
+  const selectedThemes = Array.from(document.querySelectorAll('input[name="theme"]:checked')).map(cb => cb.value);
+  const selectedCountries = Array.from(document.querySelectorAll('input[name="country"]:checked')).map(cb => cb.value);
+
   companies.forEach(company => {
     const matchesTheme = selectedThemes.length === 0 || selectedThemes.some(theme => (company.theme || []).includes(theme));
     const matchesCountry = selectedCountries.length === 0 || selectedCountries.includes(company.country);
 
     if (company.lat && company.lon && matchesTheme && matchesCountry) {
-      L.marker([company.lat, company.lon])
-        .addTo(markersLayer)
-        .bindPopup(
-          `<strong>${company.name}</strong><br>
-          <em>${company.city}, ${company.country}</em><br>
-          <small>${company.activity}</small><br>
-          ${company.web ? `<a href="${company.web}" target="_blank">Site web</a> | ` : ''}
-          ${company.linkedin ? `<a href="${company.linkedin}" target="_blank">LinkedIn</a>` : ''}`
-        );
+      let icon = L.Icon.Default.prototype;
+
+if ((company.theme || []).includes("Flood Management")) {
+  icon = blueIcon;
+} else if ((company.theme || []).includes("SSA")) {
+  icon = redIcon;
+}
+
+L.marker([company.lat, company.lon], { icon })
+  .addTo(markersLayer)
+ .bindPopup(`
+  <div style="display: flex; align-items: flex-start;">
+    ${company.logo ? `
+      <div style="margin-right:10px;text-align:center;">
+        <img src="${company.logo}" alt="${company.name}" style="width:100px;height:100px;object-fit:contain;"><br>
+        <small> Founded in ${company.founded || "N/A"}</small>
+      </div>
+    ` : ''}
+    <div>
+      <strong>${company.name}</strong><br>
+      <em>${company.city}, ${company.country}</em><br>
+      ${company.employees ? `<small>👥 ${company.employees} employees</small><br>` : ''}
+      <small>${company.activity || ""}</small><br>
+      ${company.web ? `<a href="${company.web}" target="_blank">Site web</a> | ` : ''}
+      ${company.linkedin ? `<a href="${company.linkedin}" target="_blank">LinkedIn</a>` : ''}
+    </div>
+  </div>
+`);
     }
   });
 }
-
 // Génère les cases à cocher dynamiquement
 function createCheckboxes(containerId, items) {
   const container = document.getElementById(containerId);
